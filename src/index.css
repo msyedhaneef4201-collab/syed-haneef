@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
+
+@theme {
+  --font-mono: 'VT323', monospace;
+  --font-sans: 'Share Tech Mono', monospace;
+}
+
+body { background: #000; color: #fff; overflow-x: hidden; margin: 0; padding: 0; }
+.crt-overlay { position: fixed; inset: 0; background: linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,0.25) 50%), linear-gradient(90deg, rgba(255,0,0,0.06), rgba(0,255,0,0.02), rgba(0,0,255,0.06)); background-size: 100% 4px, 4px 100%; pointer-events: none; z-index: 1000; }
+.noise-bg { position: absolute; inset: -50%; width: 200%; height: 200%; background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E'); opacity: 0.15; animation: static-noise 0.2s infinite steps(2); pointer-events: none; z-index: 0; }
+@keyframes static-noise { 0% { transform: translate(0, 0); } 100% { transform: translate(-2%, -2%); } }
+.tearing { animation: screen-tear 3s infinite step-end; }
+@keyframes screen-tear { 0%,10%,50%,55%,100% { transform: translateX(0); } 7% { transform: translateX(6px) skewX(10deg); } 52% { transform: translateX(-8px) skewX(-15deg); } }
+.border-glitch { border: 4px solid #00FFFF; box-shadow: 6px 6px 0 0 #FF00FF; }
+.border-glitch-alt { border: 4px solid #FF00FF; box-shadow: -6px 6px 0 0 #00FFFF; }
+.glitch-flash { animation: flash 0.1s infinite; }
+@keyframes flash { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+@keyframes slideDown { from { background-position: 0 0; } to { background-position: 0 40px; } }
+.animate-slide-down { animation: slideDown 0.5s linear infinite; }
